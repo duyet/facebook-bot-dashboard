@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+{{> header_note}}
+
+<html>
+<head>
+    <title>
+        {{#if title}}
+            {{ title }}
+        {{else}}
+            {{#if config.title}}
+                {{ config.title }}
+            {{else}}
+                Quick
+            {{/if}}
+        {{/if}}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    {{> header_meta}}
+
+    {{css_cdn is_production 
+        '/public/lib/bootstrap/dist/css/bootstrap.min.css' 
+        '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/css/bootstrap.min.css'}}
+    {{css_cdn is_production 
+        '/public/lib/font-awesome/css/font-awesome.min.css' 
+        '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'}}
+    <link rel="stylesheet" type="text/css" href="/public/css/app.css" />
+    {{custom_css_by_page custom_css}}
+
+    {{> header_script}}
+</head>
+
+<body>
+    {{#unless request.query.no_header}}
+    <div class="container-fluid color-header m-b-1" {{random_header}}>
+        <header class="container header">
+            <nav class="navbar navbar-light">
+                <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#quicknavbar">
+                    <a href="/" class="menu-btn-mobile">&#9776;</a>
+                </button>
+                <div class="collapse navbar-toggleable-xs" id="quicknavbar">
+                    <a class="navbar-brand" href="/" id="quick-logo">{{config.appName}}</a>
+                    {{> menu}}
+                </div>
+            </nav>
+        </header>
+    </div>
+    {{/unless}}
+
+    <div class="container app">{{{body}}}</div>
+
+    <script type="text/javascript">
+        window.app = window.app || {{{json config.js_config}}};
+        window.app.user = {{#if user._id}} {{{json user}}} {{else}} {_id: '-', access_token: '-', username: 'guest'} {{/if}};
+        window.app.basepath = '{{request.origin}}';
+    </script>
+
+    {{js_cdn is_production '/public/lib/jquery/dist/jquery.min.js' '//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js'}}
+    {{js_cdn is_production '/public/lib/tether/dist/js/tether.min.js' '//cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js'}}
+    {{js_cdn is_production '/public/lib/bootstrap/dist/js/bootstrap.min.js' '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js'}}
+
+    <script type="text/javascript" src="/public/js/main.js"></script>
+    <script type="text/javascript" src="/public/js/x-message.js"></script>
+    {{custom_script_by_page custom_script}}
+
+    {{> footer_script}}
+</body>
+</html>

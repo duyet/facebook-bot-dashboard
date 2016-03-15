@@ -1,0 +1,38 @@
+{
+  "name": "quick",
+  "description": "Save link, by quick collection, quick access",
+  "main": "index.js",
+  "authors": [
+    "Van-Duyet Le <me@duyetdev.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "quick",
+    "nodejs",
+    "link"
+  ],
+  "homepage": "https://github.com/duyetdev/quick",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2",
+    "handlebars": "~4.0.5",
+    "moment": "~2.11.2",
+    "font-awesome": "fontawesome#~4.5.0",
+    "tether": "~1.1.1",
+    "clipboard": "~1.5.8",
+    "AlertifyJS": "duyetdev/AlertifyJS#~1.6.1",
+    "markdown": "~0.5.0",
+    "marked": "~0.3.5",
+    "copy": "*",
+    "ace-builds": "^1.2.3",
+    "requirejs": "^2.1.22"
+  }
+}
